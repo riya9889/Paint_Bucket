@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paint Bucket Identification System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🎨 Paint Bucket Identification System</h1>
+    <p>Select the expected bucket, start the webcam, and show the label.</p>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <label for="bucketSelect">Target paint bucket</label>
+      <div class="row">
+        <select id="bucketSelect"></select>
+        <button id="refreshBtn" class="btn secondary" title="Re-scan Images folder">⟳</button>
+      </div>
+
+      <div class="preview">
+        <img id="bucketPreview" alt="Reference bucket" hidden>
+        <p id="previewHint">No reference image selected.</p>
+      </div>
+
+      <div class="row">
+        <button id="startBtn" class="btn primary">Start Webcam</button>
+        <button id="stopBtn" class="btn danger" disabled>Stop Webcam</button>
+      </div>
+      <p id="errorBox" class="error" hidden></p>
+    </section>
+
+    <section class="panel video">
+      <div class="video-frame">
+        <img id="videoFeed" alt="Webcam feed" hidden>
+        <div id="videoPlaceholder">Webcam is off</div>
+      </div>
+    </section>
+
+    <section class="panel result">
+      <div id="verdict" class="verdict idle">—</div>
+      <dl>
+        <dt>Detected product</dt>
+        <dd id="detectedProduct">—</dd>
+        <dt>Selected product</dt>
+        <dd id="selectedProduct">—</dd>
+        <dt>Raw OCR text</dt>
+        <dd id="detectedTexts" class="chips">—</dd>
+        <dt>OCR confidence</dt>
+        <dd id="confidence">—</dd>
+      </dl>
+      <p id="message" class="message">Select a bucket and start the webcam.</p>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
